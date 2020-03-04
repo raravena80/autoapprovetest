@@ -16,12 +16,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         id: prcomm
 
-      - name: Approve Pull Request
-        if: steps.prcomm.outputs.BOOL_TRIGGERED == 'true'
-        uses: juliangruber/approve-pull-request-action@v1
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          number: 1
       # This step is a toy example that illustrates how you can use outputs from the pr-command action
       - name: print variables
         if: steps.prcomm.outputs.BOOL_TRIGGERED == 'true'
@@ -30,3 +24,10 @@ jobs:
           BRANCH_NAME: ${{ steps.prcomm.outputs.BRANCH_NAME }}
           PR_NUMBER: ${{ steps.prcomm.outputs.PULL_REQUEST_NUMBER }}
           USERNAME: ${{ steps.prcomm.outputs.COMMENTER_USERNAME }}
+
+      - name: Approve Pull Request
+        if: steps.prcomm.outputs.BOOL_TRIGGERED == 'true'
+        uses: juliangruber/approve-pull-request-action@v1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          number: 1
