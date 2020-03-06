@@ -1,4 +1,3 @@
-# autoapprovetest
-Testing Autoaprove
+# Github Actions Playground
 
-Actions v6
+Actions v7
