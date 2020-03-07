@@ -14,10 +14,10 @@ jobs:
           TRIGGER_PHRASE: "/approve"
         env: # you must supply GITHUB_TOKEN
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        id: approvecomm
+        id: prcomm
 
       - name: Approve Pull Request
-        if: steps.approvecomm.outputs.BOOL_TRIGGERED == 'true'
+        if: steps.prcomm.outputs.BOOL_TRIGGERED == 'true'
         uses: juliangruber/approve-pull-request-action@v1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -29,14 +29,14 @@ jobs:
           TRIGGER_PHRASE: "/lgtm"
         env: # you must supply GITHUB_TOKEN
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        id: lgtmcomm
+        id: prcomm
 
       - name: Approve Pull Request
-        if: steps.lgtmcom.outputs.BOOL_TRIGGERED == 'true'
+        if: steps.prcomm.outputs.BOOL_TRIGGERED == 'true'
         uses: juliangruber/approve-pull-request-action@v1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          number: ${{ steps.lgtmcom.outputs.PULL_REQUEST_NUMBER }}
+          number: ${{ steps.prcomm.outputs.PULL_REQUEST_NUMBER }}
 
       #- name: print variables
       #  if: steps.prcomm.outputs.BOOL_TRIGGERED == 'true'
