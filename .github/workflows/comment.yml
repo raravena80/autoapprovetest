@@ -1,4 +1,4 @@
-name: Demo
+name: Approve PR
 
 on:
   #pull_request:
@@ -32,4 +32,4 @@ jobs:
         uses: juliangruber/approve-pull-request-action@v1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          number: 1
+          number: ${{ steps.prcomm.outputs.PULL_REQUEST_NUMBER }}
