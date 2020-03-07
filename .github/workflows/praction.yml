@@ -8,6 +8,7 @@ on:
     
 jobs:
   deploy:
+    name: Watcher Job
     runs-on: ubuntu-latest
     steps:
       - uses: khan/pull-request-comment-trigger@master
@@ -17,11 +18,17 @@ jobs:
           reaction: rocket
         env:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
-      - run: 'echo Found it!'
+      - uses: actions/checkout@v1
         if: steps.check.outputs.triggered == 'true'
+      - name: Find Pull Request
+        uses: juliangruber/find-pull-request-action@v1
+        id: find-pull-request
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${GITHUB_REF##*/}
       - name: Approve Pull Request
         if: steps.check.outputs.triggered == 'true'
         uses: juliangruber/approve-pull-request-action@v1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          number: 1        
+          number: ${{ steps.find-pull-request.outputs.number }}
