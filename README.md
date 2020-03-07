@@ -1,3 +1,3 @@
 # Github Actions Playground
 
-Actions v8
+Actions v9
