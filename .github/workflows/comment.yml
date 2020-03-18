@@ -38,10 +38,11 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           number: ${{ steps.prcomm2.outputs.PULL_REQUEST_NUMBER }}
 
-      #- name: print variables
-      #  if: steps.prcomm.outputs.BOOL_TRIGGERED == 'true'
-      #  run: echo "${USERNAME} made a triggering comment on PR# ${PR_NUMBER} for ${BRANCH_NAME}"
-      #  env:
-      #    BRANCH_NAME: ${{ steps.prcomm.outputs.BRANCH_NAME }}
-      #    PR_NUMBER: ${{ steps.prcomm.outputs.PULL_REQUEST_NUMBER }}
-      #    USERNAME: ${{ steps.prcomm.outputs.COMMENTER_USERNAME }}
+      - name: print variables
+        if: steps.prcomm.outputs.BOOL_TRIGGERED == 'true'
+        run: echo "${USERNAME} made a triggering comment on PR# ${PR_NUMBER} for ${BRANCH_NAME} and ${ACTOR}"
+        env:
+          BRANCH_NAME: ${{ steps.prcomm.outputs.BRANCH_NAME }}
+          PR_NUMBER: ${{ steps.prcomm.outputs.PULL_REQUEST_NUMBER }}
+          USERNAME: ${{ steps.prcomm.outputs.COMMENTER_USERNAME }}
+          ACTOR: ${{ github.actor }} 
