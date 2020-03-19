@@ -18,10 +18,11 @@ jobs:
 
       - name: Approve Pull Request
         if: steps.prcomm.outputs.BOOL_TRIGGERED == 'true'
-        uses: juliangruber/approve-pull-request-action@v1
+        uses: raravena80/approve-pr-action@v1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           number: ${{ steps.prcomm.outputs.PULL_REQUEST_NUMBER }}
+          actor: ${{ github.actor }} 
 
       - name: listen for PR lgtm Comments
         uses: machine-learning-apps/actions-chatops@master
@@ -33,10 +34,11 @@ jobs:
 
       - name: Approve Pull Request
         if: steps.prcomm2.outputs.BOOL_TRIGGERED == 'true'
-        uses: juliangruber/approve-pull-request-action@v1
+        uses: raravena80/approve-pr-action@v1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           number: ${{ steps.prcomm2.outputs.PULL_REQUEST_NUMBER }}
+          actor: ${{ github.actor }} 
 
       - name: print variables
         if: steps.prcomm.outputs.BOOL_TRIGGERED == 'true'
