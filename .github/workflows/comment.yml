@@ -18,7 +18,7 @@ jobs:
 
       - name: Approve Pull Request
         if: steps.prcomm.outputs.BOOL_TRIGGERED == 'true'
-        uses: raravena80/approve-pr-action@v1
+        uses: raravena80/approve-pr-action@v0.1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           number: ${{ steps.prcomm.outputs.PULL_REQUEST_NUMBER }}
@@ -34,7 +34,7 @@ jobs:
 
       - name: Approve Pull Request
         if: steps.prcomm2.outputs.BOOL_TRIGGERED == 'true'
-        uses: raravena80/approve-pr-action@v1
+        uses: raravena80/approve-pr-action@v0.1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           number: ${{ steps.prcomm2.outputs.PULL_REQUEST_NUMBER }}
